@@ -1,6 +1,5 @@
 #include <iostream>
 #include <array>
-using namespace std;
 
 enum class Color
 {
@@ -9,7 +8,7 @@ enum class Color
     yellow = 2
 };
 
-typedef array<array<Color, 7>, 6> Grid;
+typedef std::array<std::array<Color, 7>, 6> Grid;
 
 void initialize(Grid& grid);
 void display(const Grid& grid);
@@ -28,10 +27,10 @@ int main()
     bool bWin;
 
     do {
-        cout << "Player ";
-        if (player_color == Color::yellow) { cout << 'X'; }
-        else { cout << 'O'; }
-        cout << ", Your choice: " << endl;
+        std::cout << "Player ";
+        if (player_color == Color::yellow) { std::cout << 'X'; }
+        else { std::cout << 'O'; }
+        std::cout << ", Your choice: " << std::endl;
 
         game(grid, player_color);
         display(grid);
@@ -44,12 +43,12 @@ int main()
 
     if (bWin) 
     {
-        cout << "The player ";
-        if (player_color == Color::yellow) { cout << 'O'; }
-        else { cout << 'X'; }
-        cout << " wins' !" << endl;
+        std::cout << "The player ";
+        if (player_color == Color::yellow) { std::cout << 'O'; }
+        else { std::cout << 'X'; }
+        std::cout << " wins' !" << std::endl;
     }
-    else { cout << "Draw !" << endl; }
+    else { std::cout << "Draw !" << std::endl; }
 
     return 0;
 }
@@ -67,28 +66,28 @@ void initialize(Grid& grid)
 
 void display(const Grid& grid)
 {
-    cout << endl;
+    std::cout << std::endl;
 
     for (auto line : grid) {
-        cout << " |";
+        std::cout << " |";
         for (auto kase : line) 
         {
-            if (kase == Color::none) { cout << ' '; }
-            else if (kase == Color::red) { cout << 'O'; }
-            else { cout << 'X'; }
-            cout << '|';
+            if (kase == Color::none) { std::cout << ' '; }
+            else if (kase == Color::red) { std::cout << 'O'; }
+            else { std::cout << 'X'; }
+            std::cout << '|';
         }
-        cout << endl;
+        std::cout << std::endl;
     }
 
-    cout << '=';
+    std::cout << '=';
     for (size_t i(1); i <= grid[0].size(); ++i) 
     {
-        cout << '=' << i;
+        std::cout << '=' << i;
     }
-    cout << "==";
+    std::cout << "==";
 
-    cout << endl << endl;
+    std::cout << std::endl << std::endl;
 }
 
 bool play(Grid& grid, size_t column, Color color)
@@ -172,11 +171,11 @@ void game(Grid& grid, Color const& player_color)
     bool bLegit;
 
     do {
-        cin >> column;
+        std::cin >> column;
         --column;
 
         bLegit = play(grid, column, player_color);
-        if (!bLegit) { cout << " > You can not play here" << endl; }
+        if (!bLegit) { std::cout << " > You can not play here" << std::endl; }
     } while (!bLegit);
 }
 
