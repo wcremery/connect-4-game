@@ -15,7 +15,7 @@ void initialize(Grid& grid);
 void display(const Grid& grid);
 void game(Grid& grid, Color const& player_color);
 bool isWin(const Grid& grid, Color const& player_color);
-bool full(const Grid& grid);
+bool isFull(const Grid& grid);
 
 int main()
 {
@@ -40,7 +40,7 @@ int main()
         if (player_color == Color::yellow) { player_color = Color::red; }
         else { player_color = Color::yellow; }
 
-    } while (!bWin && ! full(grid));
+    } while (!bWin && ! isFull(grid));
 
     if (bWin) 
     {
@@ -180,7 +180,7 @@ void game(Grid& grid, Color const& player_color)
     } while (!bLegit);
 }
 
-bool full(Grid const& grid)
+bool isFull(Grid const& grid)
 {
     for (auto kase : grid[0]) 
     {
